@@ -1,38 +1,28 @@
 const createTab = () => {
-  const container = document.getElementsByClassName("table");
+  const cells = document.getElementById("cells");
 
   for (let i = 0; i < 90; i++) {
-    const tabNumDiv = document.createElement("div");
-    tabNumDiv.classList.add("cells");
+    const cellsDiv = document.createElement("div");
+    cellsDiv.className = "cell";
+    // console.log(cellsDiv);
+    const cellsH3 = document.createElement("h3");
+    cellsH3.innerText = i;
 
-    const tabNumH3 = document.createElement("h3");
-    tabNumH3.innerText = i + 1;
-
-    tabNumDiv.appendChild(tabNumH3);
-    table.appendChild(tabNumDiv);
-
-    const button = document.getElementById("btn");
-    button.onclick = (event) => {
-      console.log(event.currentTarget);
-
-      numberRestColor();
-      event.currentTarget.classList.add("restColor");
-    };
+    cellsDiv.appendChild(cellsH3);
+    cells.appendChild(cellsDiv);
   }
-};
 
-const numberRestColor = () => {
-  const colorBack = document.querySelector(".restColor");
-  console.log("colorBack", colorBack);
-};
+  const buttonEl = document.getElementById("btn");
 
-const randNum = (e) => {
-  const randomicNumber = Math.floor(Math.random() * e.length);
-  const rand = e.splice(randomicNumber, 1)[0];
-  return rand;
+  buttonEl.onclick = () => {
+    const numRand = Math.floor(Math.random() * 90);
+    const arrayCells = document.querySelectorAll(".cell");
+    console.log(numRand, arrayCells[numRand - 1]);
+    const extract = arrayCells[numRand - 1];
+    extract.style = "background-color: blue";
+  };
 };
 
 window.onload = function () {
   createTab();
-  const btn = document.getElementById("btn");
 };
